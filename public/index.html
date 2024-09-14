@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Testing Page</title>
+</head>
+<body>
+    <h2>Now test the API by outputting to the browser console:</h2>
+    <button onclick="getAllUsers()">Get All Users</button>
+    <button onclick="addNewUser()">Add New User</button>
+    <button onclick="getUser()">Get User</button>
+    <button onclick="updateUser()">Update User</button>
+    <button onclick="deleteUser()">Delete User</button>
+
+    <script>
+        const baseUrl = 'http://localhost:3000/api/users';
+
+        function getAllUsers() {
+            fetch(baseUrl)
+                .then(response => response.json())
+                .then(data => console.log('All Users:', data))
+                .catch(error => console.error('Error:', error));
+        }
+
+        function addNewUser() {
+            const newUser = { name: 'New User' }; // Example new user data
+            fetch(baseUrl, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(newUser)
+            })
+                .then(response => response.json())
+                .then(data => console.log('User Added:', data))
+                .catch(error => console.error('Error:', error));
+        }
+
+        function getUser() {
+            const userId = 1; // Example: Get user with ID 1
+            fetch(`${baseUrl}/${userId}`)
+                .then(response => response.json())
+                .then(data => console.log('User Details:', data))
+                .catch(error => console.error('Error:', error));
+        }
+
+        function updateUser() {
+            const userId = 1; // Example: Update user with ID 1
+            const updatedUser = { name: 'Updated Name' }; // Example updated data
+            fetch(`${baseUrl}/${userId}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(updatedUser)
+            })
+                .then(response => response.json())
+                .then(data => console.log('User Updated:', data))
+                .catch(error => console.error('Error:', error));
+        }
+
+        function deleteUser() {
+            const userId = 1; // Example: Delete user with ID 1
+            fetch(`${baseUrl}/${userId}`, {
+                method: 'DELETE'
+            })
+                .then(response => response.json())
+                .then(data => console.log('User Deleted:', data))
+                .catch(error => console.error('Error:', error));
+        }
+    </script>
+</body>
+</html>
