@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <title>Library Management System</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Library Management</a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#" onclick="fetchBooks()">View All Books</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" onclick="showAddBookForm()">Add Book</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <h1>WEB422: Jason Gomez Library Management System</h1>
+
+        <!-- Table to display books -->
+        <div id="book-list-container" style="display: none;">
+            <h3>All Books</h3>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th>ISBN</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="book-list"></tbody>
+            </table>
+        </div>
+
+        <!-- Form to add/edit a book -->
+        <div id="book-form" style="display: none;">
+            <h3 id="form-title">Add a Book</h3>
+            <form onsubmit="submitBook(event)">
+                <input type="hidden" id="book-id">
+                <div class="form-group">
+                    <label for="title">Title</label>
+                    <input type="text" id="title" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="author">Author</label>
+                    <input type="text" id="author" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="isbn">ISBN</label>
+                    <input type="text" id="isbn" class="form-control" required>
+                </div>
+                <button type="submit" class="btn btn-success">Save</button>
+                <button type="button" class="btn btn-secondary" onclick="hideBookForm()">Cancel</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="myapp.js"></script>
+</body>
+</html>
